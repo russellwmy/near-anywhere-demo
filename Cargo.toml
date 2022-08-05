@@ -1,0 +1,30 @@
+[package]
+name = "near-anywhere-demo"
+version = "0.1.0"
+edition = "2021"
+author = ["Russell Wong"]
+
+[dependencies]
+near-anywhere = { git = "https://github.com/russellwmy/near-anywhere.git" }
+
+getrandom = { version = "0.2", features = ["js"] }
+log = "0.4"
+wasm-logger = "0.2"
+wasm-bindgen-futures = "0.4"
+wee_alloc = "0.4.5"
+yew = { git = "https://github.com/yewstack/yew.git", features = ["csr"] }
+yew-router = { git = "https://github.com/yewstack/yew.git" }
+chrono = "0.4.19"
+
+
+[profile.release]
+# less code to include into binary
+panic = 'abort'
+# optimization over all codebase ( better optimization, slower build )
+codegen-units = 1
+# optimization for size ( more aggressive )
+opt-level = 'z'
+# optimization for size
+# opt-level = 's'
+# link time optimization using using whole-program analysis
+lto = true
